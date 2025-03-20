@@ -8,9 +8,9 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=40g
-#SBATCH --time=168:00:00
+#SBATCH --time=01:00:00
 #SBATCH --job-name=StickleBackup
-#SBATCH --output=/gpfs01/home/mbzlld/code_and_scripts/slurm_out_scripts/slurm-%x-%j.out
+#SBATCH --output=/gpfs01/home/mbzcp2/slurm_outputs/slurm-%x-%j.out
 
 # possible sharepoint sites
 # MacCollLab1
@@ -21,10 +21,10 @@
 module load rclone-uon/1.65.2
 
 # Copy all of the files from your folder on Augusta to a folder on sharepoint
-rclone --transfers 1 --checkers 1 --bwlimit 100M --checksum copy ~/data/stickleback MacCollLab2:Laura/stickleback
+rclone --transfers 1 --checkers 1 --bwlimit 100M --checksum copy ~/data/sticklebacks MacColl_stickleback_lab_2:Christophe/data/sticklebacks
 
 # and check that the two folders are identical
-rclone check --one-way ~/data/stickleback MacCollLab2:Laura/stickleback
+rclone check --one-way ~/data/sticklebacks MacColl_stickleback_lab_2:Christophe/data/sticklebacks
 
 # unload the rclone module
 module unload rclone-uon/1.65.2
